@@ -9,6 +9,6 @@ Este projeto tem por objeto a aplicação das habilidades desenvilvidas ao longo
 
 
 #### Colaboradores:
-### juniorlucelso@gmail.com
-### juniorlucelso@gmail.com
-### juniorlucelso@gmail.com
+### Lucelo Junior - juniorlucelso@gmail.com
+### Tiago Toledo - mail@gmail.com
+### Leonardo Calado - mail@gmail.com
