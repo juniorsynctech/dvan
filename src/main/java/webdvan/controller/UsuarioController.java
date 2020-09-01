@@ -1,5 +1,6 @@
 package webdvan.controller;
 
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,15 +15,24 @@ public class UsuarioController {
 	@Autowired
 	UsuarioRepository ur;
 	
-	@RequestMapping(value ="CadastroUsuario", method = RequestMethod.GET)
-	public String form() {
-		return "formCadastroUsuario.html";
-	}
+	@Autowired
+	HttpSession session;
 	
 	@RequestMapping(value ="/usuario", method = RequestMethod.POST)
-	public String cadastrar(Usuario usuario) {
+	public String cadastrar(Usuario usuario , HttpSession session ) {
+		
 		ur.save(usuario);
-		return "index.html";
+		session.setAttribute("usuario", usuario);
+		return "redirect:/";
+		
 	}
-
+	
+	@RequestMapping(value ="/deslogar", method = RequestMethod.GET)
+	public String deslogar(HttpSession session ) {
+		
+		session.invalidate();
+		return "redirect:/";
+			
+	}
+		
 }

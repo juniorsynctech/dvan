@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -70,12 +70,16 @@
                                         <div class="main-menu d-none d-lg-block">
                                             <nav> 
                                                 <ul id="navigation">                                                                                          
-                                                    <li><a href="CadastroUsuario">Ser DVAN</a>
+                                                    <li><a th:if="${session.usuario == null}" href="" >DVAN</a>
+														<a th:if="${session.usuario != null}" th:text="${session.usuario.email}" href="" ></a>
                                                         <ul class="submenu">
-														   <li><a href="">Cliente</a></li>
-                                                           <li><a href="CadastroRota">Associado</a></li>
-														   <li><a href="">Onde Estamos</a></li>
-                                                        </ul>
+														   <li th:if="${session.usuario == null}"><a href="/cadastraUsuario">Cadastro</a></li>
+														   <li th:if="${session.usuario == null}"><a href="/cadastraUsuario">Logar</a></li>
+                                                           <li th:if="${session.usuario != null}"><a th:if="${session.usuario.tipo == 2}" href="/MenuAssociado">Gerenciar</a></li>
+                                                           <li th:if="${session.usuario != null}"><a th:if="${session.usuario.tipo == 1}" href="/MenuCliente">Gerenciar</a></li>
+														   <li th:if="${session.usuario == null}"><a href="">Onde</a></li>
+														   <li th:if="${session.usuario != null}" ><a href="deslogar">Sair</a></li>
+														</ul>
                                                     </li>                                                    
                                                 </ul>
                                             </nav>

@@ -1,6 +1,7 @@
 package webdvan.models;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +18,7 @@ public class Rota implements Serializable {
 	private long id;
 	@Nullable
 	private String nome;
-	@Nullable   
+	@Nullable @Column(name = "idassociado")  
 	private long idAssociado;
 	private double valor;
 	private String horapartida;
@@ -47,46 +48,10 @@ public class Rota implements Serializable {
 	
 	private String latdestino;
 	private String lngdestino;
-		
+	
 	public Rota() {
-		super();
+
 	}
-	
-	
-
-	public Rota(String nome, long idAssociado, double valor, String horapartida, String horachegada, String diasrota,
-			String ceporigem, String cepdestino, String logradouro, String complemento, String bairro, String cidade,
-			String uf, String ibge, String logradourodestino, String complementodestino, String bairrodestino,
-			String cidadedestino, String ufdestino, String ibgedestino, String lat, String lng, String latdestino,
-			String lngdestino) {
-		super();
-		this.nome = nome;
-		this.idAssociado = idAssociado;
-		this.valor = valor;
-		this.horapartida = horapartida;
-		this.horachegada = horachegada;
-		this.diasrota = diasrota;
-		this.ceporigem = ceporigem;
-		this.cepdestino = cepdestino;
-		this.logradouro = logradouro;
-		this.complemento = complemento;
-		this.bairro = bairro;
-		this.cidade = cidade;
-		this.uf = uf;
-		this.ibge = ibge;
-		this.logradourodestino = logradourodestino;
-		this.complementodestino = complementodestino;
-		this.bairrodestino = bairrodestino;
-		this.cidadedestino = cidadedestino;
-		this.ufdestino = ufdestino;
-		this.ibgedestino = ibgedestino;
-		this.lat = lat;
-		this.lng = lng;
-		this.latdestino = latdestino;
-		this.lngdestino = lngdestino;
-	}
-
-
 
 	public long getId() {
 		return id;

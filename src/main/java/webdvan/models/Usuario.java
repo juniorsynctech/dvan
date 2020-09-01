@@ -2,10 +2,12 @@ package webdvan.models;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 
 @Entity
 public class Usuario implements Serializable {
@@ -14,33 +16,39 @@ public class Usuario implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	private String nome;
+	//1 - Cliente / 2 - Associado
+	private int tipo;
 	private String senha;
-	private String email;
-		
-	public Usuario() {
-		super();
-	}
 	
-	public Usuario(String nome, String senha, String email) {
+	@Column(unique=true)
+	private String email;
+
+	public Usuario(int tipo, String senha, String email) {
 		super();
-		this.nome = nome;
+		this.tipo = tipo;
 		this.senha = senha;
 		this.email = email;
 	}
 	
+	public Usuario() {
+		
+	}
+
+	public int getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(int tipo) {
+		this.tipo = tipo;
+	}
+
 	public long getId() {
 		return id;
 	}
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+
 	public String getSenha() {
 		return senha;
 	}
