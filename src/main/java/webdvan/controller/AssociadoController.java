@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import webdvan.models.Endereco;
 import webdvan.models.Rota;
 import webdvan.repository.RotaRepository;
 
