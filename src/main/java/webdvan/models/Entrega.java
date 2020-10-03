@@ -9,18 +9,17 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Rota {
-
-	private static final long serialVersionUID = 1L;
+public class Entrega {
+	
+private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	private String cidadeOrigem;
-	private String cidadeDestino;
-	private long idUsuario;
-	
-	
+	private long usuario;
+	private long associado;
+	private long enderecoSaida;
+	private long enderecoChegada;
 	
 }
