@@ -1,14 +1,12 @@
 package webdvan.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import lombok.Data;
-
 @Entity
-@Data
 public class Rota {
 
 	private static final long serialVersionUID = 1L;
@@ -17,10 +15,38 @@ public class Rota {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
+	@Column(name = "cidade_origem")
 	private String cidadeOrigem;
+	@Column(name = "cidade_destino")
 	private String cidadeDestino;
+	@Column(name = "id_usuario")
 	private long idUsuario;
 	
-	
-	
+	public Rota() {
+		
+	}
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public String getCidadeOrigem() {
+		return cidadeOrigem;
+	}
+	public void setCidadeOrigem(String cidadeOrigem) {
+		this.cidadeOrigem = cidadeOrigem;
+	}
+	public String getCidadeDestino() {
+		return cidadeDestino;
+	}
+	public void setCidadeDestino(String cidadeDestino) {
+		this.cidadeDestino = cidadeDestino;
+	}
+	public long getIdUsuario() {
+		return idUsuario;
+	}
+	public void setIdUsuario(long idUsuario) {
+		this.idUsuario = idUsuario;
+	}	
 }

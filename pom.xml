@@ -51,13 +51,10 @@
 			<groupId>javax.annotation</groupId>
 			<artifactId>javax.annotation-api</artifactId>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<scope>provided</scope>
+			<groupId>org.thymeleaf</groupId>
+			<artifactId>thymeleaf</artifactId>
 		</dependency>
-
 	</dependencies>
 
 	<build>

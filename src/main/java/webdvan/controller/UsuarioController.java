@@ -20,7 +20,7 @@ public class UsuarioController {
 	
 	@RequestMapping(value ="/usuario", method = RequestMethod.POST)
 	public String cadastrar(Usuario usuario , HttpSession session ) {
-		
+
 		ur.save(usuario);
 		session.setAttribute("usuario", usuario);
 		return "redirect:/";

@@ -1,13 +1,17 @@
 package webdvan.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import webdvan.models.Endereco;
 import webdvan.models.Rota;
+import webdvan.models.Usuario;
 import webdvan.repository.RotaRepository;
 
 @Controller
@@ -22,13 +26,22 @@ public class AssociadoController {
 	}
 	
 	@RequestMapping(value ="/MenuAssociado", method = RequestMethod.GET)
-	public String formMenuAssociado() {
+	public ModelAndView formMenuAssociado() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("associado/formMenuAssociado.html");
+		List<Rota> lista = rr.findAll();
+		mv.addObject("rotas", lista);	
+			
 		
-		return "associado/formMenuAssociado.html";
+		
+		return mv;
 	}
 	
 	@RequestMapping(value ="/rota", method = RequestMethod.POST)
-	public String Cadastrar(Rota rota) {
+	public String cadastrar(Rota rota , HttpSession session) {
+		
+		Usuario us = (Usuario)session.getAttribute("usuario");
+		rota.setIdUsuario(us.getId());
 		rr.save(rota);
 		return "associado/formCadastroRota.html";
 	}
@@ -40,12 +53,12 @@ public class AssociadoController {
 	}
 	
 	@RequestMapping(value ="/ListarRotas", method = RequestMethod.GET)
-	public String Listar() {
+	public ModelAndView Listar() {
 		
 		ModelAndView mv = new ModelAndView("associado/formListaRotas.html");
 		Iterable<Rota> lista = rr.findAll();
 		mv.addObject("rotas", lista);		
-		return "associado/formListaRotas.html";
+		return mv;
 		
 	}
 }

@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -92,103 +92,26 @@
 				<h2 class="contact-title">Cadastro de Rotas</h2>
 				</div>
 				
-					<div class="col-lg-8">
-                        <form class="form-contact contact_form" method="post" content-type="text/json" action="/rota" nome="idassociado" value="${session.usuario.id}">
-						
-						<h3 class="contact-title">Dados da Origem</h3>
+					<div class="col-lg-6">
+                        <form class="form-contact contact_form" method="post" action="/rota" >
+							<h3 class="contact-title">Dados da Rota</h3>
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-5">
                                     <div class="form-group">
-                                        <input class="form-control valid" name="nome" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nome da Rota'" placeholder="Nome da Rota">
+                                        <input class="form-control valid" name="cidadeOrigem" type="text" placeholder="Origem">
                                     </div>
                                 </div>
-								<div class="col-3">
+								<div class="col-5">
                                     <div class="form-group">
-                                        <input class="form-control valid" name="valor" type="number" title="Valor Médio do Transporte">
+                                        <input class="form-control valid" name="cidadeDestino" type="text" placeholder="Destino">
                                     </div>
                                 </div>
-								<div class="col-3">
+								<div class="col-2">
                                     <div class="form-group">
-                                        <input class="form-control valid" name="horapartida" type="time" title="Hora de Saida" >
-                                    </div>
-                                </div>
-								<div class="col-sm-2">
-                                    <div class="form-group">
-                                        <input class="form-control valid" name="ceporigem" type="text" id="cep" size=8 maxlength=8 onfocus="this.placeholder = ''" onblur="this.placeholder = 'CEP'" placeholder="CEP"> 
-                                    </div>
-                                </div>
-								<div class="col-sm-2">
-									<div class="form-group" >
-										<input class="form-control valid" name="uf" id="uf" type="text" size=2 maxlength=2 onfocus="this.placeholder = ''" onblur="this.placeholder = 'UF'" placeholder="UF">
-									</div>
-                                </div>
-								<div class="col-sm-4">
-                                    <div class="form-group">
-                                        <input class="form-control valid" name="cidade" type="text" id="cidade" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Cidade'" placeholder="Cidade">
-                                    </div>
-                                </div>
-								<div class="col-sm-4">
-                                    <div class="form-group">
-                                        <input class="form-control valid" name="bairro" type="text" id="bairro" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Bairro'" placeholder="Bairro">
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <input class="form-control valid" name="logradouro" id="rua" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Endereço'" placeholder="Endereço">
+                                        <input class="form-control valid" name="valor" type="text" placeholder="Valor">
                                     </div>
                                 </div>
 								<div class="col-sm-6">
-                                    <div class="form-group">
-                                        <input class="form-control valid" name="lat" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Latitude'" placeholder="Latitude">
-                                    </div>
-                                </div>
-								<div class="col-sm-6">
-                                    <div class="form-group">
-                                        <input class="form-control valid" name="lng" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Longetude'" placeholder="Longetude">
-                                    </div>
-                                </div>
-								<div class="col-sm-6">
-									<h3 class="contact-title">Dados do Destino</h3>
-								</div>
-								<div class="col-sm-6">
-									
-								</div>
-								<div class="col-sm-2">
-                                    <div class="form-group">
-                                        <input class="form-control valid" name="cepdestino" type="text" id="cepdestino" size=8 maxlength=8 onfocus="this.placeholder = ''" onblur="this.placeholder = 'CEP'" placeholder="CEP"> 
-                                    </div>
-                                </div>
-								<div class="col-sm-2">
-									<div class="form-group" >
-										<input class="form-control valid" name="ufdestino" id="ufdestino" type="text" size=2 maxlength=2 onfocus="this.placeholder = ''" onblur="this.placeholder = 'UF'" placeholder="UF">
-									</div>
-                                </div>
-								<div class="col-sm-4">
-                                    <div class="form-group">
-                                        <input class="form-control valid" name="cidadedestino" type="text" id="cidadedestino" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Cidade'" placeholder="Cidade">
-                                    </div>
-                                </div>
-								<div class="col-sm-4">
-                                    <div class="form-group">
-                                        <input class="form-control valid" name="bairrodestino" type="text" id="bairrodestino" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Bairro'" placeholder="Bairro">
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <input class="form-control valid" name="logradourodestino" id="ruadestino" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Endereço'" placeholder="Endereço">
-                                    </div>
-                                </div>
-								<div class="col-sm-6">
-                                    <div class="form-group">
-                                        <input class="form-control valid" name="latdestino" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Latitude'" placeholder="Latitude">
-                                    </div>
-                                </div>
-								<div class="col-sm-6">
-                                    <div class="form-group">
-                                        <input class="form-control valid" name="lngdestino" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Longetude'" placeholder="Longetude">
-                                    </div>
-                                </div>
-								<div class="col-sm-2">
 									<div class="form-group" >
 										<button type="submit" class="button button-contactForm boxed-btn">Cadastrar</button>
 									</div>
