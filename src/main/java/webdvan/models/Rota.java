@@ -23,6 +23,8 @@ public class Rota implements Serializable{
 	private String cidadeDestino;
 	@Column(name = "id_usuario")
 	private long idUsuario;
+	@Column(name = "consultaRota")
+	private String consulta = (this.cidadeOrigem +" - "+this.cidadeDestino);
 	
 	public Rota() {
 		
@@ -50,5 +52,6 @@ public class Rota implements Serializable{
 	}
 	public void setIdUsuario(long idUsuario) {
 		this.idUsuario = idUsuario;
-	}	
+	}
+	
 }

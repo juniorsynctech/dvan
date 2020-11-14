@@ -21,9 +21,10 @@ public class Usuario implements Serializable {
 	protected long id;
 	//1 - Cliente / 2 - Associado
 	protected int tipo;
+	@Column(length = 15)
 	protected String senha;
-	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-	protected List<Telefone> telefones;
+	@Column(length = 13)
+	protected String telefone;
 	
 	@Column(unique=true)
 	protected String email;
@@ -67,12 +68,12 @@ public class Usuario implements Serializable {
 		this.email = email;
 	}
 
-	public List<Telefone> getTelefones() {
-		return telefones;
+	public String getTelefone() {
+		return telefone;
 	}
 
-	public void setTelefones(List<Telefone> telefones) {
-		this.telefones = telefones;
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 	
 	
