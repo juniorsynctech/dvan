@@ -1,12 +1,15 @@
 package webdvan.models;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -15,13 +18,15 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	protected long id;
 	//1 - Cliente / 2 - Associado
-	private int tipo;
-	private String senha;
+	protected int tipo;
+	protected String senha;
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	protected List<Telefone> telefones;
 	
 	@Column(unique=true)
-	private String email;
+	protected String email;
 
 	public Usuario(int tipo, String senha, String email) {
 		super();
@@ -61,6 +66,16 @@ public class Usuario implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public List<Telefone> getTelefones() {
+		return telefones;
+	}
+
+	public void setTelefones(List<Telefone> telefones) {
+		this.telefones = telefones;
+	}
+	
+	
 	
 }
 

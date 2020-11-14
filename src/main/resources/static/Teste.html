@@ -6,7 +6,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>DVAN</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" co8ntent="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
    <!-- CSS here -->
@@ -21,6 +21,7 @@
         <link rel="stylesheet" href="assets/css/slick.css">
         <link rel="stylesheet" href="assets/css/nice-select.css">
         <link rel="stylesheet" href="assets/css/style.css">
+		<link rel="stylesheet" href="assets/css/dvan.css">
 </head>
 
 <body>
@@ -72,7 +73,7 @@
                                             <nav> 
                                                 <ul id="navigation">                                                                                          
                                                     <li><a th:if="${session.usuario == null}" href="" >DVAN</a>
-														<a th:if="${session.usuario != null}" th:text="${session.usuario.email}" href="" >   </a>
+														<a th:if="${session.usuario != null}" th:text="${session.usuario.email}" href="" ></a>
                                                         <ul class="submenu">
 														   <li th:if="${session.usuario == null}"><a href="/cadastraUsuario">Cadastro</a></li>
 														   <li th:if="${session.usuario == null}"><a href="/login">Logar</a></li>
@@ -115,6 +116,34 @@
                 </div>
             </div>
         </div>
+		<div class="slider-area " >
+                <div class="container" > 
+					<div  class="dvan">
+						<div class="row">
+							<h3>Para onde vamos DVAN?</h3>                    
+                        </div>
+                        <div class="row" >
+								<input placeholder="De onde?"></input> 
+								<input placeholder="Para ?"> </input> 
+								<button action="/buscar" type="submit" class="button button-contactForm boxed-btn">Buscar</button>
+                        </div>
+						<div class="row">
+							<table  th:each="item : ${resultado}">
+								<tr>
+									<td th:text="${item.cidadeOrigem}" >Cidade1</td>
+									<td th:text="${item.cidadeDestino}" >Cidade2</td>
+									<td th:text="${item.cidadeOrigem}" >Cidade3</td>
+								</tr>
+								<tr>
+									<td th:text="${item.cidadeDestino}" >Cidade4</td>
+									<td th:text="${item.cidadeOrigem}" >Cidade5</td>
+									<td th:text="${item.cidadeDestino}" >Cidade6</td>
+								</tr>
+							</table>								
+                        </div>
+					</div>
+                </div>
+        </div>
     </main>
     <footer>
 		<div class="footer-area footer-bg">
@@ -129,10 +158,6 @@
                                 </div>
                             </div>
                             <div class="col-xl col-lg">
-                                <span class="contact-number f-right">Thiago: 83 988295219</span>
-								<span class="contact-number f-right">Leonardo: 83 999961382</span>
-								<span class="contact-number f-right">Junior: 83 988581794</span>
-								<span class="contact-number f-right">Igor: 83 998270907</span>
                             </div>
                         </div>
                     </div>
