@@ -12,3 +12,4 @@ Este projeto tem por objeto a aplicação das habilidades desenvilvidas ao longo
 ### Lucelo Junior - juniorlucelso@gmail.com
 ### Tiago Toledo - mail@gmail.com
 ### Leonardo Calado - mail@gmail.com
+### Igor Aguiar - desenvigor@gmail.com
