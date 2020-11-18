@@ -45,5 +45,15 @@ public class UsuarioController {
 		return "redirect:/";
 			
 	}
+	
+	@GetMapping(value = "MenuCliente")
+	public String menuCliente() {
+		return "cliente/formMenuCliente";
+	}
+	
+	@GetMapping(value = "/pedidoEntrega")
+	public String pedido() {
+		return "cliente/formNovaEntrega.html";
+	}
 		
 }

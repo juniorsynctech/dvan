@@ -1,25 +1,21 @@
 package webdvan.controller;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.util.SystemPropertyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import webdvan.models.Cidades;
 import webdvan.models.Rota;
 import webdvan.models.Usuario;
+import webdvan.repository.CidadesRepository;
 import webdvan.repository.RotaRepository;
 import webdvan.repository.UsuarioRepository;
 
@@ -31,9 +27,21 @@ public class AssociadoController {
 	@Autowired
 	private UsuarioRepository ur;
 		
+	@Autowired
+	private CidadesRepository cd;
+
+	public ArrayList<String> cidades;
+		
 	@RequestMapping(value ="/CadastroRota", method = RequestMethod.GET)
-	public String formCadastroRota() {
-		return "associado/formCadastroRota.html";
+	public ModelAndView formCadastroRota() {
+		ModelAndView mv = new ModelAndView("associado/formCadastroRota.html");
+
+		cidades = new ArrayList<String>();
+		for(Cidades c : cd.findAll()) {
+			cidades.add(c.getCidade());
+		}	
+		mv.addObject("cidades", cidades);
+		return mv;
 	}
 	
 	@GetMapping(value = "/editarPerfil")

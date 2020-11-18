@@ -48,16 +48,7 @@
 							<div
 								class="row d-flex justify-content-between align-items-center">
 								<div class="header-info-left">
-									<ul>
-										<li>Thiago Toledo</li>
-										<li>Leonardo Calado</li>
-										<li><a
-											href="https://www.linkedin.com/in/junior-lucelso-70685272/"
-											target="_blank">Lucelso Júnior <i
-												class="fab fa-linkedin-in"></i></a></li>
-										<li><a href="https://www.linkedin.com/in/desenvigor/"
-											target="_blank">Igor Aguiar <i class="fab fa-linkedin-in"></i></a></li>
-									</ul>
+									<!-- Verificar -->
 								</div>
 							</div>
 						</div>
@@ -69,8 +60,7 @@
 							<!-- Logo -->
 							<div class="col-xl-2 col-lg-2">
 								<div class="logo">
-									<a href="https://github.com/juniorsynctech/dvan"
-										target="_blank"><img src="assets/img/logo/logo.png" alt=""></a>
+									<img src="assets/img/logo/logo.png" alt=""></a>
 								</div>
 							</div>
 							<div class="col-xl-10 col-lg-10">
@@ -80,22 +70,12 @@
 									<div class="main-menu d-none d-lg-block">
 										<nav>
 											<ul id="navigation">
-												<li><a th:if="${session.usuario == null}" href="">DVAN</a>
-													<a th:if="${session.usuario != null}"
-													th:text="${session.usuario.email}" href=""> </a>
+												<li><a>Menu</a>
 													<ul class="submenu">
-														<li th:if="${session.usuario == null}"><a
-															href="/cadastraUsuario">Cadastro</a></li>
-														<li th:if="${session.usuario == null}"><a
-															href="/login">Logar</a></li>
-														<li th:if="${session.usuario != null}"><a
-															th:if="${session.usuario.tipo == 2}"
-															href="/MenuAssociado">Gerenciar</a></li>
-														<li th:if="${session.usuario != null}"><a
-															th:if="${session.usuario.tipo == 1}" href="/MenuCliente">Gerenciar</a></li>
-														<li th:if="${session.usuario == null}"><a href="">Onde</a></li>
-														<li th:if="${session.usuario != null}"><a
-															href="deslogar">Sair</a></li>
+														<li><a href="CadastroRota">Cadastrar Rota</a></li>
+														<li><a href="ListarRotas">Listar Rotas</a></li>
+														<li><a href="editarPerfil">Perfil</a></li>
+														<li><a href="deslogar">Sair</a></li>
 													</ul></li>
 											</ul>
 										</nav>
@@ -117,38 +97,102 @@
 	</header>
 	<main>
 		<!--? slider Area Start-->
+		
 		<div class="slider-area ">
-			<div
-				class="single-slider hero-overly slider-height2 d-flex align-items-center"
-				data-background="assets/img/hero/frente.jpg">
-				<div class="container">
-					<div class="row">
-						<div class="col-xl-12">
-							<div class="hero-cap">
-								<h5>Solução eficiente para suas necessidades</h5>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div>
-			<form action="/pesquisarRotas" method="get" th:object="${cidades}">
-				<input list="cidades" name="consulta">
-									<datalist id="cidades">
-										<option th:each="consulta : ${cidades}" th:value="${consulta}" th:label="${row}">
-									</datalist>
-									<button>Pesquisar</button>
-			</form>
-			<table>
-				<tr th:each="item : ${session.entregas}">
-					<td th:text="${item.cidadeOrigem}" class="col 4"></td>
-					<td th:text="${item.cidadeDestino}" class="col 4"></td>
-					<td th:text="Valor" class="col 2"></td>
-					<td th:text="Botão" class="col 2"></td>
-				</tr>
-			</table>
-		</div>
+			<div class="container">
+			<!--? Conteúdo do Menu-->
+			<div class="col-12">
+				<h2 class="contact-title">Pedido de entrega</h2>
+
+				<h3 class="contact-title">Dados da Entrega</h3>
+				<div class="col-lg-6">
+					<form class="form-contact contact_form" method="post"
+						action="/rota">
+						<div class="row">
+							<div class="col-6">
+								<div class="col-5">
+									<div class="form-group">
+										<input class="form-control valid" name="nome" type="text"
+											onfocus="this.placeholder = ''"
+											onblur="this.placeholder = 'Nome da Rota'"
+											placeholder="Nome da Rota"> <input
+											class="form-control valid" name="cidadeOrigem" type="text"
+											placeholder="Origem">
+									</div>
+								</div>
+								<div class="col-3">
+									<div class="col-5">
+										<div class="form-group">
+											<input class="form-control valid" name="valor" type="number"
+												title="Valor Médio do Transporte"> <input
+												class="form-control valid" name="cidadeDestino" type="text"
+												placeholder="Destino">
+										</div>
+									</div>
+									<div class="col-sm-2">
+										<div class="form-group">
+											<input class="form-control valid" name="ceporigem"
+												type="text" id="cep" size=8 maxlength=8
+												onfocus="this.placeholder = ''"
+												onblur="this.placeholder = 'CEP'" placeholder="CEP">
+										</div>
+									</div>
+									<div class="col-sm-2">
+										<div class="form-group">
+											<input class="form-control valid" name="uf" id="uf"
+												type="text" size=2 maxlength=2
+												onfocus="this.placeholder = ''"
+												onblur="this.placeholder = 'UF'" placeholder="UF">
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="form-group">
+											<input class="form-control valid" name="cidade" type="text"
+												id="cidade" onfocus="this.placeholder = ''"
+												onblur="this.placeholder = 'Cidade'" placeholder="Cidade">
+										</div>
+									</div>
+									<div class="col-sm-4">
+										<div class="form-group">
+											<input class="form-control valid" name="bairro" type="text"
+												id="bairro" onfocus="this.placeholder = ''"
+												onblur="this.placeholder = 'Bairro'" placeholder="Bairro">
+										</div>
+									</div>
+									<div class="col-12">
+										<div class="form-group">
+											<input class="form-control valid" name="logradouro" id="rua"
+												type="text" onfocus="this.placeholder = ''"
+												onblur="this.placeholder = 'Endereço'"
+												placeholder="Endereço">
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<input class="form-control valid" name="lat" type="text"
+												onfocus="this.placeholder = ''"
+												onblur="this.placeholder = 'Latitude'"
+												placeholder="Latitude">
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<input class="form-control valid" name="lng" type="text"
+												onfocus="this.placeholder = ''"
+												onblur="this.placeholder = 'Longetude'"
+												placeholder="Longetude">
+										</div>
+									</div>
+									<div class="col-sm-2">
+										<div class="form-group">
+											<button type="submit"
+												class="button button-contactForm boxed-btn">Cadastrar</button>
+										</div>
+
+									</div>
+
+								</div>
+								</div>
 	</main>
 	<footer>
 		<div class="footer-area footer-bg">
@@ -156,20 +200,7 @@
 				<div class="footer-top footer-padding">
 					<!-- footer Heading -->
 					<div class="footer-heading">
-						<div class="row justify-content-between">
-							<div class="col-xl-6 col-lg-8 col-md-8">
-								<div class="wantToWork-caption wantToWork-caption2">
-									<h2>Contatos Sobre o Projeto:</h2>
-								</div>
-							</div>
-							<div class="col-xl col-lg">
-								<span class="contact-number f-right">Thiago: 83 988295219</span>
-								<span class="contact-number f-right">Leonardo: 83
-									999961382</span> <span class="contact-number f-right">Junior:
-									83 988581794</span> <span class="contact-number f-right">Igor:
-									83 998270907</span>
-							</div>
-						</div>
+						<div class="row justify-content-between"></div>
 					</div>
 				</div>
 			</div>
@@ -184,16 +215,19 @@
 
 	<!-- All JS Custom Plugins Link Here here -->
 	<script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+
 	<!-- Jquery, Popper, Bootstrap -->
 	<script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
 	<script src="./assets/js/popper.min.js"></script>
 	<script src="./assets/js/bootstrap.min.js"></script>
+
 	<!-- Jquery Mobile Menu -->
 	<script src="./assets/js/jquery.slicknav.min.js"></script>
 
 	<!-- Jquery Slick , Owl-Carousel Plugins -->
 	<script src="./assets/js/owl.carousel.min.js"></script>
 	<script src="./assets/js/slick.min.js"></script>
+
 	<!-- One Page, Animated-HeadLin -->
 	<script src="./assets/js/wow.min.js"></script>
 	<script src="./assets/js/animated.headline.js"></script>
@@ -213,6 +247,9 @@
 	<!-- Jquery Plugins, main Jquery -->
 	<script src="./assets/js/plugins.js"></script>
 	<script src="./assets/js/main.js"></script>
+
+	<!-- Busca CEP -->
+	<script src="./assets/js/buscarcep.js"></script>
 
 </body>
 

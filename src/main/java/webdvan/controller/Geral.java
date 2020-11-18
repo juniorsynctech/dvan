@@ -1,5 +1,6 @@
 package webdvan.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import webdvan.models.Cidades;
 import webdvan.models.Rota;
 import webdvan.models.Usuario;
+import webdvan.repository.CidadesRepository;
 import webdvan.repository.RotaRepository;
 import webdvan.repository.UsuarioRepository;
 
@@ -30,13 +33,30 @@ public class Geral {
 
 	@Autowired
 	RotaRepository rr;
+	
+	@Autowired
+	CidadesRepository cd;
+	
+	public ArrayList<String> cidades;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public String index(HttpSession session) {
+	public ModelAndView index(HttpSession session) {
+		
+		ModelAndView mv = new ModelAndView("index.html");
+
+		cidades = new ArrayList<String>();
+		for(Cidades c : cd.findAll()) {
+			cidades.add(c.getCidade());
+		}	
+		mv.addObject("cidades", cidades);
+		
 		if (session.getAttribute("falhaLogin") != null) {
 			session.removeAttribute("falhaLogin");
 		}
-		return "index.html";
+		
+		
+		
+		return mv;
 	}
 
 	@RequestMapping(value = "/cadastraUsuario", method = RequestMethod.GET)
@@ -70,12 +90,12 @@ public class Geral {
 	}
 
 	@GetMapping(value = "/pesquisarRotas")
-	public String pesquisarRotas(String consulta, Model model) {
-		List<Rota> rotas = rr.findByCidadeDestino(consulta);
+	public String pesquisarRotas(String consulta, HttpSession session) {
+		List<Rota> rotas = rr.findByConsultaContaining(consulta);
 		for (Rota rota : rotas) {
 			System.out.println(rota.getCidadeDestino());
 		}
-		model.addAttribute("rotas", rotas);
+		session.setAttribute("entregas", rotas);
 		return "redirect:/";
 	}
 
