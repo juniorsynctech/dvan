@@ -96,21 +96,25 @@
 				<div class="col-lg-6">
 
 					<div class="row 12">
-						<table>
+						<table class="table table-striped" >
+						<thead>
 							<tr>
-								<th class="col 4">Origem</th>
-								<th class="col 4">Desitno</th>
-								<th class="col 2">Valor</th>
-								<th class="col 2">Editar</th>
+								<th scope="col" class="col 4">Origem</th>
+								<th scope="col" class="col 4">Desitno</th>
+								<th scope="col" class="col 2">Valor</th>
+								<th scope="col" class="col 2">Editar</th>
 							</tr>
-							<tr th:each="item : ${rotas}">
+						</thead>
+						<tbody>
+							<tr th:each ="item : ${rotas}">
 								<td th:text="${item.cidadeOrigem}" class="col 4"></td>
 								<td th:text="${item.cidadeDestino}" class="col 4"></td>
-								<td th:text="Valor" class="col 2"></td>
-								<td th:text="Botão" class="col 2"></td>
+								<td th:text="teste" class="col 2"></td>
+								<td th:text="teste" class="col 2"></td>
 							</tr>
-
-						</table>
+						</tbody>
+						
+					</table>
 					</div>
 
 

@@ -134,8 +134,19 @@
 		</div>
 		<div>
 			<form action="/pesquisarRotas" method="get">
-				<input type="text" name="consulta">
-				<button>Buscar</button>
+				<div class="form-group col-6 m-3">
+					<label for="cidadeOrigem">Cidade Origem</label> 
+					<input
+						type="text" class="form-control" id="cidadeOrigem"
+						placeholder="Cidade Origem">
+				</div>
+				<div class="form-group col-6 m-3">
+					<label for="cidadeDestino">Cidade Destino</label> 
+					<input
+						type="text" class="form-control" id="cidadeDestino"
+						placeholder="Cidade Destino">
+				</div>
+				<button class="button button-contactForm boxed-btn mb-2 ml-4 ">Pesquisar Rota</button>
 			</form>
 			<table>
 				<tr th:each="item : ${rotas}">

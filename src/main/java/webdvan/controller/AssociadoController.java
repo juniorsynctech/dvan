@@ -73,6 +73,7 @@ public class AssociadoController {
 		
 		Usuario us = (Usuario)session.getAttribute("usuario");
 		rota.setIdUsuario(us.getId());
+		rota.setConsulta();
 		rr.save(rota);
 		return "associado/formCadastroRota.html";
 	}

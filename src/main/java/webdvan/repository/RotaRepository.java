@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import webdvan.models.Rota;
 
 @Repository
-public interface RotaRepository extends JpaRepository<Rota, String> {
+public interface RotaRepository extends JpaRepository<Rota, Long> {
 
 	public List<Rota> findByCidadeDestino(String cidadeDestino);
 }
