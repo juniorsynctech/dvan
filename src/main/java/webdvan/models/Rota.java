@@ -25,10 +25,10 @@ public class Rota implements Serializable{
 	private long idUsuario;
 	@Column(name = "consulta_rota")
 	private String consulta;
+	//1 - Ativo 2- Desativado
+	private int status = 1;
+	private double valor;
 	
-	public Rota() {
-		
-	}
 	public long getId() {
 		return id;
 	}
@@ -56,9 +56,21 @@ public class Rota implements Serializable{
 	public String getConsulta() {
 		return consulta;
 	}
-	
 	public void setConsulta() {
-		this.consulta = (this.cidadeOrigem +" - "+this.cidadeDestino);
+		this.consulta = (this.cidadeDestino + " - " + this.cidadeOrigem );
 	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	public double getValor() {
+		return valor;
+	}
+	public void setValor(double valor) {
+		this.valor = valor;
+	}
+	
 	
 }

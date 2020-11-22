@@ -9,12 +9,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import webdvan.dto.BuscaEntrega;
 import webdvan.models.Cidades;
 import webdvan.models.Rota;
 import webdvan.models.Usuario;
@@ -23,7 +23,7 @@ import webdvan.repository.RotaRepository;
 import webdvan.repository.UsuarioRepository;
 
 @Controller
-public class Geral {
+public class GeralController {
 
 	@Autowired
 	HttpSession session;
@@ -33,35 +33,43 @@ public class Geral {
 
 	@Autowired
 	RotaRepository rr;
-	
+
 	@Autowired
 	CidadesRepository cd;
-	
+
 	public ArrayList<String> cidades;
+
+	BuscaEntrega buscaEntrega;
+	public ArrayList<BuscaEntrega> buscaEntregaLista;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ModelAndView index(HttpSession session) {
-		
+
 		ModelAndView mv = new ModelAndView("index.html");
 
 		cidades = new ArrayList<String>();
-		for(Cidades c : cd.findAll()) {
+		for (Cidades c : cd.findAll()) {
 			cidades.add(c.getCidade());
-		}	
+		}
 		mv.addObject("cidades", cidades);
-		
+
 		if (session.getAttribute("falhaLogin") != null) {
 			session.removeAttribute("falhaLogin");
 		}
-		
-		
-		
+
 		return mv;
 	}
 
 	@RequestMapping(value = "/cadastraUsuario", method = RequestMethod.GET)
 	public String form() {
 
+		return "dvan/CadastroUsuario.html";
+	}
+
+	@RequestMapping(value = "/cadastraUsuario?{idRota}", method = RequestMethod.GET)
+	public String formRota(@PathVariable Long idRota, HttpSession session) {
+		Rota rota = rr.findById(idRota).get();
+		session.setAttribute("rota", rota);
 		return "dvan/CadastroUsuario.html";
 	}
 
@@ -76,27 +84,44 @@ public class Geral {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String loginUsuario(String email, String senha, HttpSession session, HttpServletResponse response) throws Exception {
-		
-		
+	public String loginUsuario(String email, String senha, HttpSession session, HttpServletResponse response)
+			throws Exception {
+
 		if (ur.findByEmailAndSenha(email, senha) == null) {
 			session.setAttribute("falhaLogin", "Usuário não encontrado");
 			return ("redirect:/login");
 		} else {
 			Usuario user = ur.findByEmailAndSenha(email, senha);
 			session.setAttribute("usuario", user);
+			if (session.getAttribute("rota") != null) {
+				return ("redirect:/pedidoEntrega");
+			}
 			return ("redirect:/");
 		}
 	}
 
-	@GetMapping(value = "/pesquisarRotas")
-	public String pesquisarRotas(String consulta, HttpSession session) {
+	@RequestMapping(value = "/pesquisarRotas", method = RequestMethod.GET)
+	public ModelAndView pesquisarRotas(String consulta, HttpSession session) {
+
+		ModelAndView mv = new ModelAndView("redirect:/");
+
 		List<Rota> rotas = rr.findByConsultaContaining(consulta);
-		for (Rota rota : rotas) {
-			System.out.println(rota.getCidadeDestino());
+		buscaEntregaLista = new ArrayList<>();
+
+		for (Rota r : rotas) {
+
+			Usuario us = ur.findById(rotas.get(0).getIdUsuario()).get();
+			buscaEntrega = new BuscaEntrega();
+			buscaEntrega.setContatoAssociado(us.getTelefone());
+			buscaEntrega.setConsulta(r.getConsulta());
+			buscaEntrega.setNomeAssociado(us.getEmail());
+			buscaEntrega.setIdRota(r.getId());
+			buscaEntregaLista.add(buscaEntrega);
 		}
-		session.setAttribute("entregas", rotas);
-		return "redirect:/";
+
+		session.setAttribute("buscaEntregaLista", buscaEntregaLista);
+
+		return mv;
 	}
 
 }

@@ -25,7 +25,6 @@ public class Endereco implements Serializable {
 	
 	/*dados por viacep app */
 	private String logradouro;
-	private String complemento;
 	private String bairro;
 	private String cidade;
 	private String uf;
@@ -56,12 +55,6 @@ public class Endereco implements Serializable {
 	}
 	public void setLogradouro(String logradouro) {
 		this.logradouro = logradouro;
-	}
-	public String getComplemento() {
-		return complemento;
-	}
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
 	}
 	public String getBairro() {
 		return bairro;

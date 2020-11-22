@@ -20,9 +20,24 @@ public class Entrega implements Serializable {
 	private long idRota;
 	private long idEnderecoSaida;
 	private long idEnderecoChegada;
+	private String nome;
 	
+	// 1 Aguardando Confirmação  2-Pendente coleta 3-Em transito 4-Entregue  -5 Concluido  6-Canceldo  7-Sob Contestacao 
+	private int status;
+	
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
 	public Entrega() {
-		
 	}
 
 	public Entrega(long id, long idCliente, long idAssociado, long idRota, long idEnderecoSaida,
@@ -81,6 +96,11 @@ public class Entrega implements Serializable {
 
 	public void setIdEnderecoChegada(long idEnderecoChegada) {
 		this.idEnderecoChegada = idEnderecoChegada;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+		
 	}
 	
 	

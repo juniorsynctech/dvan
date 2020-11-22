@@ -99,12 +99,12 @@
                             <div class="row">
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <input class="form-control valid" name="email" type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Seu email'" placeholder="Seu email">
+                                        <input class="form-control valid" name="email" type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Seu email'" placeholder="Seu email" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
-                                        <input class="form-control valid" name="senha" type="password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Sua Senha'" placeholder="Sua Senha">
+                                        <input class="form-control valid" name="senha" type="password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Sua Senha'" placeholder="Sua Senha" required>
                                     </div>
                                 </div>
 								<div class="col-sm-4">
@@ -125,6 +125,13 @@
                                 </div>
                             </div>                            
                         </form>
+                        <form class="form-contact contact_form" method="get" action="/login">
+                         <div class="col-sm-4">
+							<div class="form-group" >
+								<button type="submit" class="button button-contactForm boxed-btn">Login</button>
+							</div>
+                          </div>
+                          </form>
                     </div>
         </div>
     </main>

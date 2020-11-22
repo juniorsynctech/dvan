@@ -13,4 +13,6 @@ public interface RotaRepository extends JpaRepository<Rota, Long> {
 	public List<Rota> findByCidadeDestino(String cidadeDestino);
 	
 	public List<Rota> findByConsultaContaining(String cidadeDestino);
+	
+	public List<Rota> findByIdUsuario(Long id);
 }
