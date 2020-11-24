@@ -133,21 +133,30 @@
 				</div>
 			</div>
 			<div>
+			<h4>Pesquisar Rotas de Encomendas</h4>
 				<form action="/pesquisarRotas" method="get" th:object="${cidades}">
-					<input list="cidades" name="consulta">
+					<div class="form-group col-sm-4">
+					<input class="form-control form-control-sm" type="text" list="cidades" name="consulta">
 					<datalist id="cidades">
 						<option th:each="consulta : ${cidades}" th:value="${consulta}" >
 						</datalist>
-						<button>Pesquisar</button>
+						<button class="button button-contactForm boxed-btn mt-3">Pesquisar</button>
 					</form>
+					</div>
 				</div>
 				<div>
-					<table th:object= "${session.buscaEntregaLista}" >
+					<table class="table table-dark ml-3 col-8" th:object= "${session.buscaEntregaLista}" >
+						<thead class="thead-dark">
+							<td th:if="${session.buscaEntregaLista} != null" >Rota (Origem - Destino)</td>
+							<td th:if="${session.buscaEntregaLista} != null">Dados Transportador</td>
+							<td th:if="${session.buscaEntregaLista} != null">Contato</td>
+							<td th:if="${session.buscaEntregaLista} != null">Encomendar"</td>
+						</thead>
 						<tr th:each="item : ${session.buscaEntregaLista}">
 							<td th:text="${item.consulta}" class="col 4"></td>
 							<td th:text="${item.nomeAssociado}" class="col 4"></td>
 							<td th:text="${item.contatoAssociado}" class="col 4"></td>
-							<td th:if="${session.usuario == null }" class="col 2"><a th:href="${(#mvc.url('GC#formRota').arg(0, item.idRota)).build()}">Cadastrar</a></td>
+							<td th:if="${session.usuario == null }" class="col 2"><a th:href="${(#mvc.url('GC#formRota').arg(0, item.idRota)).build()}">Solicitar</a></td>
 							<td th:if="${session.usuario != null}" class="col 2"><a th:if="${session.usuario.tipo == 2}" href="/pedidoEntrega?${item.idRota}">Solicitar</a></td>
 						</tr>
 					</table>

@@ -46,7 +46,11 @@ public class AssociadoController {
 	public ArrayList<String> cidades;
 		
 	@RequestMapping(value ="/CadastroRota", method = RequestMethod.GET)
-	public ModelAndView formCadastroRota() {
+	public ModelAndView formCadastroRota(HttpSession session) {
+		if (session.getAttribute("usuario") == null) {
+			ModelAndView mv = new ModelAndView("redirect:/");
+			return mv;
+		}
 		ModelAndView mv = new ModelAndView("associado/formCadastroRota.html");
 
 		cidades = new ArrayList<String>();
@@ -59,6 +63,10 @@ public class AssociadoController {
 	
 	@GetMapping(value = "/editarPerfil")
 	public ModelAndView formEditarPerfil(HttpSession session) {
+		if (session.getAttribute("usuario") == null) {
+			ModelAndView mv = new ModelAndView("redirect:/");
+			return mv;
+		}
 		ModelAndView mv = new ModelAndView("associado/formEditarPerfil");
 		Usuario user = (Usuario) session.getAttribute("usuario");
 		mv.addObject("usuario", user);
@@ -79,6 +87,10 @@ public class AssociadoController {
 	
 	@RequestMapping(value ="/MenuAssociado", method = RequestMethod.GET)
 	public ModelAndView formMenuAssociado(HttpSession session, HttpServletRequest request) {
+		if (session.getAttribute("usuario") == null) {
+			ModelAndView mv = new ModelAndView("redirect:/");
+			return mv;
+		}
 		ModelAndView mv = new ModelAndView("associado/formMenuAssociado.html");
 		Usuario user = (Usuario) session.getAttribute("usuario");
 		List<Entrega> listaEntregaUsuario = entregaRepository.findByIdAssociado(user.getId());
@@ -94,7 +106,6 @@ public class AssociadoController {
 	
 	@RequestMapping(value ="/rota", method = RequestMethod.POST)
 	public String cadastrar(Rota rota , HttpSession session) {
-
 		Usuario us = (Usuario)session.getAttribute("usuario");
 		rota.setIdUsuario(us.getId());
 		rota.setConsulta();
@@ -109,16 +120,25 @@ public class AssociadoController {
 	}
 	
 	@RequestMapping(value ="/ListarRotas", method = RequestMethod.GET)
-	public ModelAndView Listar() {
+	public ModelAndView Listar(HttpSession session) {
+		if (session.getAttribute("usuario") == null) {
+			ModelAndView mv = new ModelAndView("redirect:/");
+			return mv;
+		}
+		Usuario user = (Usuario) session.getAttribute("usuario");
 		
 		ModelAndView mv = new ModelAndView("associado/formListaRotas.html");
-		Iterable<Rota> lista = rr.findAll();
+		Iterable<Rota> lista = rr.findByIdUsuario(user.getId());
 		mv.addObject("rotas", lista);		
 		return mv;
 	}
 	
 	@GetMapping(value = "/ativarRota?{id}")
-	public ModelAndView ativarRota(@PathVariable Long id) {
+	public ModelAndView ativarRota(@PathVariable Long id, HttpSession session) {
+		if (session.getAttribute("usuario") == null) {
+			ModelAndView mv = new ModelAndView("redirect:/");
+			return mv;
+		}
 		Optional<Rota> rt = rr.findById(id);
 		Rota rota = rt.get();
 		rota.setStatus(1);
@@ -130,7 +150,11 @@ public class AssociadoController {
 	}
 	
 	@GetMapping(value = "/desativarRota?{id}")
-	public ModelAndView desativarRota(@PathVariable Long id) {
+	public ModelAndView desativarRota(@PathVariable Long id, HttpSession session) {
+		if (session.getAttribute("usuario") == null) {
+			ModelAndView mv = new ModelAndView("redirect:/");
+			return mv;
+		}
 		Optional<Rota> rt = rr.findById(id);
 		Rota rota = rt.get();
 		rota.setStatus(2);
@@ -141,7 +165,10 @@ public class AssociadoController {
 	}
 	
 	@GetMapping(value="/atualizarStatus?{id}")
-	public String atualizarStatus(@PathVariable long id) {
+	public String atualizarStatus(@PathVariable long id, HttpSession session) {
+		if (session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
 		Entrega entrega = entregaRepository.findById(id).get();
 		entrega.setStatus((entrega.getStatus()+1));
 		entregaRepository.save(entrega);

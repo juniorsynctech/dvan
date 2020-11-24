@@ -62,6 +62,9 @@ public class UsuarioController {
 	
 	@GetMapping(value = "MenuCliente")
 	public String menuCliente(HttpSession session, HttpServletRequest request) {
+		if (session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
 		Usuario user = (Usuario) session.getAttribute("usuario");
 		List<Entrega> listaEntregaUsuario = entregaRepository.findByIdCliente(user.getId());
 		List<Rota> listaRotas = rr.findAll();
@@ -76,11 +79,18 @@ public class UsuarioController {
 	
 	@GetMapping(value = "/pedidoEntrega")
 	public String pedido() {
+		if (session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
 		return "cliente/formNovaEntrega.html";
 	}
 	
 	@GetMapping(value = "/pedidoEntrega?{id}")
 	public ModelAndView pedidoEntrega(@PathVariable Long id, HttpSession session, HttpServletRequest request) {
+		if (session.getAttribute("usuario") == null) {
+			ModelAndView mv = new ModelAndView("/");
+			return mv;
+		}
 		ModelAndView mv = new ModelAndView("cliente/formNovaEntrega.html");
 		session.removeAttribute("buscaEntregaLista");
 		return mv;
@@ -114,7 +124,10 @@ public class UsuarioController {
 	}
 	
 	@GetMapping(value="/entregue?{id}")
-	public String entregue(@PathVariable long id) {
+	public String entregue(@PathVariable long id, HttpSession session) {
+		if (session.getAttribute("usuario") == null) {
+			return "redirect:/";
+		}
 		Entrega entrega = entregaRepository.findById(id).get();
 		entrega.setStatus(5);
 		entregaRepository.save(entrega);
