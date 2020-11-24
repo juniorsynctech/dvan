@@ -96,15 +96,15 @@
 				<div class="col-lg-6">
 
 					<div class="row 12">
-						<table class="table table-striped" >
+						<table class="table table-dark" >
 						<tbody>
 							<tr th:each ="item : ${rotas}">
 								<td th:text="${item.consulta}" class="col 4"></td>
 								<td th:if="${item.status == 1}">
-								<a th:href="${(#mvc.url('AC#desativarRota').arg(0, item.id)).build()}">Inativar</a>
+								<a th:href="${(#mvc.url('AC#desativarRota').arg(0, item.id)).build()}" class="text-danger">Inativar</a>
 								</td>
 								<td th:if="${item.status == 2}">
-								<a th:href="${(#mvc.url('AC#ativarRota').arg(0, item.id)).build()}">Ativar</a>
+								<a th:href="${(#mvc.url('AC#ativarRota').arg(0, item.id)).build()}" class="text-success">Ativar</a>
 								</td>
 							</tr>
 						</tbody>
