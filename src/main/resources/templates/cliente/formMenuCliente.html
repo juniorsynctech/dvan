@@ -97,19 +97,27 @@
 				<div class="col-lg-6">
 
 					<div class="row 12">
-						<table class="table table-striped" th:object="${listaEntrega}">
+						<table class="table table-dark" th:object="${listaEntrega}">
+							<thead>
+								<tr>
+									<td th:if="${listaEntrega != null}">Nome da Encomenda</td>
+									<td th:if="${listaEntrega != null}">Situação</td>
+									<td th:if="${listaEntrega != null}">Confirmação Entrega</td>
+								</tr>
+							</thead>
 							<tbody>
 								<tr th:each="item : ${listaEntrega}">
 									<td th:text="${item.nome}" class="col 4"></td>
 									<td th:switch="${item.status}">
-										<div th:case="1"><span>Aguardando Confirmação</span></div>
-										<div th:case="2"><span>Pendente Coleta</span></div>
-										<div th:case="3"><span>Em trânsito</span></div>
-										<div th:case="4"><span>Concluído</span></div>
-										<div th:case="5"><span>Entregue</span></div>
+										<div th:case="1"><span class="text-secondary">Aguardando Confirmação</span></div>
+										<div th:case="2"><span class="text-warning">Pendente Coleta</span></div>
+										<div th:case="3"><span class="text-info">Em trânsito</span></div>
+										<div th:case="4"><span class="text-danger">Concluído</span></div>
+										<div th:case="5"><span class="text-success">Entregue</span></div>
 									</td>
-									<td th:if="${item.status != 5}"><a
-										th:href="${(#mvc.url('UC#entregue').arg(0, item.id)).build()}">Entregue</a>
+									<td>
+										<div th:if="${item.status != 5}"><a class="text-info" th:href="${(#mvc.url('UC#entregue').arg(0, item.id)).build()}">Confirmar Entrega</a></div>
+										<div class="text-success" th:if="${item.status == 5}">Entrega Confirmada</div>
 									</td>
 								</tr>
 							</tbody>
