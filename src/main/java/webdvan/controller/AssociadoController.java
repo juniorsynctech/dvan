@@ -80,6 +80,7 @@ public class AssociadoController {
 		Usuario user = (Usuario) session.getAttribute("usuario");
 		usuario.setId(user.getId());
 		usuario.setTipo(user.getTipo());
+		usuario.setTelefone(user.getTelefone());
 		ur.save(usuario);
 		session.setAttribute("usuario", usuario);		
 		return mv;
