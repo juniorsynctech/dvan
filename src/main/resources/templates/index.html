@@ -1,231 +1,245 @@
 <!doctype html>
 <html class="no-js" lang="zxx" xmlns:th="http://www.thymeleaf.org">
-	
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="x-ua-compatible" content="ie=edge">
-		<title>DVAN</title>
-		<meta name="description" content="">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="shortcut icon" type="image/x-icon"
-		href="assets/img/favicon.ico">
-		
-		<!-- CSS here -->
-		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
-		<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-		<link rel="stylesheet" href="assets/css/slicknav.css">
-		<link rel="stylesheet" href="assets/css/animate.min.css">
-		<link rel="stylesheet" href="assets/css/magnific-popup.css">
-		<link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
-		<link rel="stylesheet" href="assets/css/themify-icons.css">
-		<link rel="stylesheet" href="assets/css/themify-icons.css">
-		<link rel="stylesheet" href="assets/css/slick.css">
-		<link rel="stylesheet" href="assets/css/nice-select.css">
-		<link rel="stylesheet" href="assets/css/style.css">
-	</head>
-	
-	<body>
-		<!-- Preloader Start -->
-		<div id="preloader-active">
-			<div
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>DVAN</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" type="image/x-icon"
+	href="assets/img/favicon.ico">
+
+<!-- CSS here -->
+<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+<link rel="stylesheet" href="assets/css/slicknav.css">
+<link rel="stylesheet" href="assets/css/animate.min.css">
+<link rel="stylesheet" href="assets/css/magnific-popup.css">
+<link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="assets/css/themify-icons.css">
+<link rel="stylesheet" href="assets/css/themify-icons.css">
+<link rel="stylesheet" href="assets/css/slick.css">
+<link rel="stylesheet" href="assets/css/nice-select.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+	<!-- Preloader Start -->
+	<div id="preloader-active">
+		<div
 			class="preloader d-flex align-items-center justify-content-center">
-				<div class="preloader-inner position-relative">
-					<div class="preloader-circle"></div>
-					<div class="preloader-img pere-text">
-						<img src="assets/img/logo/loder.jpg" alt="">
+			<div class="preloader-inner position-relative">
+				<div class="preloader-circle"></div>
+				<div class="preloader-img pere-text">
+					<img src="assets/img/logo/loder.jpg" alt="">
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Preloader Start -->
+	<header>
+		<!-- Header Start -->
+		<div class="header-area">
+			<div class="main-header ">
+				<div class="header-top d-none d-lg-block">
+					<div class="container">
+						<div class="col-xl-12">
+							<div
+								class="row d-flex justify-content-between align-items-center">
+								<div class="header-info-left">
+									<ul>
+										<li>Thiago Toledo</li>
+										<li>Leonardo Calado</li>
+										<li><a
+											href="https://www.linkedin.com/in/junior-lucelso-70685272/"
+											target="_blank">Lucelso Júnior <i
+												class="fab fa-linkedin-in"></i></a></li>
+										<li><a href="https://www.linkedin.com/in/desenvigor/"
+											target="_blank">Igor Aguiar <i class="fab fa-linkedin-in"></i></a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="header-bottom  header-sticky">
+					<div class="container">
+						<div class="row align-items-center">
+							<!-- Logo -->
+							<div class="col-xl-2 col-lg-2">
+								<div class="logo">
+									<a href="https://github.com/juniorsynctech/dvan"
+										target="_blank"><img src="assets/img/logo/logo.png" alt=""></a>
+								</div>
+							</div>
+							<div class="col-xl-10 col-lg-10">
+								<div
+									class="menu-wrapper  d-flex align-items-center justify-content-end">
+									<!-- Main-menu -->
+									<div class="main-menu d-none d-lg-block">
+										<nav>
+											<ul id="navigation">
+												<li><a th:if="${session.usuario == null}" href="">Menu</a>
+													<a th:if="${session.usuario != null}"
+													th:text="${session.usuario.email}" href=""> </a>
+													<ul class="submenu">
+														<li th:if="${session.usuario == null}"><a
+															href="/cadastraUsuario">Cadastro</a></li>
+														<li th:if="${session.usuario == null}"><a
+															href="/login">Logar</a></li>
+														<li th:if="${session.usuario != null}"><a
+															th:if="${session.usuario.tipo == 2}"
+															href="/MenuAssociado">Gerenciar</a></li>
+														<li th:if="${session.usuario != null}"><a
+															th:if="${session.usuario.tipo == 1}" href="/MenuCliente">Gerenciar</a></li>
+														<li th:if="${session.usuario == null}"><a href="">Onde</a></li>
+														<li th:if="${session.usuario != null}"><a
+															href="deslogar">Sair</a></li>
+													</ul></li>
+											</ul>
+										</nav>
+									</div>
+									<!-- Header-btn -->
+
+								</div>
+							</div>
+							<!-- Mobile Menu -->
+							<div class="col-12">
+								<div class="mobile_menu d-block d-lg-none"></div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- Preloader Start -->
-		<header>
-			<!-- Header Start -->
-			<div class="header-area">
-				<div class="main-header ">
-					<div class="header-top d-none d-lg-block">
-						<div class="container">
-							<div class="col-xl-12">
-								<div
-								class="row d-flex justify-content-between align-items-center">
-									<div class="header-info-left">
-										<ul>
-											<li>Thiago Toledo</li>
-											<li>Leonardo Calado</li>
-											<li><a
-												href="https://www.linkedin.com/in/junior-lucelso-70685272/"
-												target="_blank">Lucelso Júnior <i
-												class="fab fa-linkedin-in"></i></a></li>
-												<li><a href="https://www.linkedin.com/in/desenvigor/"
-												target="_blank">Igor Aguiar <i class="fab fa-linkedin-in"></i></a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="header-bottom  header-sticky">
-						<div class="container">
-							<div class="row align-items-center">
-								<!-- Logo -->
-								<div class="col-xl-2 col-lg-2">
-									<div class="logo">
-										<a href="https://github.com/juniorsynctech/dvan"
-										target="_blank"><img src="assets/img/logo/logo.png" alt=""></a>
-									</div>
-								</div>
-								<div class="col-xl-10 col-lg-10">
-									<div
-									class="menu-wrapper  d-flex align-items-center justify-content-end">
-										<!-- Main-menu -->
-										<div class="main-menu d-none d-lg-block">
-											<nav>
-												<ul id="navigation">
-													<li><a th:if="${session.usuario == null}" href="">DVAN</a>
-														<a th:if="${session.usuario != null}"
-														th:text="${session.usuario.email}" href=""> </a>
-														<ul class="submenu">
-															<li th:if="${session.usuario == null}"><a
-															href="/cadastraUsuario">Cadastro</a></li>
-															<li th:if="${session.usuario == null}"><a
-															href="/login">Logar</a></li>
-															<li th:if="${session.usuario != null}"><a
-																th:if="${session.usuario.tipo == 2}"
-															href="/MenuAssociado">Gerenciar</a></li>
-															<li th:if="${session.usuario != null}"><a
-															th:if="${session.usuario.tipo == 1}" href="/MenuCliente">Gerenciar</a></li>
-															<li th:if="${session.usuario == null}"><a href="">Onde</a></li>
-															<li th:if="${session.usuario != null}"><a
-															href="deslogar">Sair</a></li>
-														</ul></li>
-												</ul>
-											</nav>
-										</div>
-										<!-- Header-btn -->
-										
-									</div>
-								</div>
-								<!-- Mobile Menu -->
-								<div class="col-12">
-									<div class="mobile_menu d-block d-lg-none"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- Header End -->
-		</header>
-		<main>
-			<!--? slider Area Start-->
-			<div class="slider-area ">
-				<div
+		<!-- Header End -->
+	</header>
+	<main>
+		<!--? slider Area Start-->
+		<div class="slider-area ">
+			<div
 				class="single-slider hero-overly slider-height2 d-flex align-items-center"
 				data-background="assets/img/hero/frente.jpg">
-					<div class="container">
-						<div class="row">
-							<div class="col-xl-12">
-								<div class="hero-cap">
-									<h5>Solução eficiente para suas necessidades</h5>
-								</div>
+				<div class="container">
+					<div class="row">
+						<div class="col-xl-12">
+							<div class="hero-cap">
+								<h5>Solução eficiente para suas necessidades</h5>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div>
-			<h4>Pesquisar Rotas de Encomendas</h4>
+		</div>
+		<div class="container" >
+			<h2 class="pt-4">Rotas de Encomendas
+			  <small class="text-muted">Pesquise aqui as rotas recomendadas por nossos assosciados</small>
+			</h2>
+			<div class="form-group d-flex justify-content-left">
 				<form action="/pesquisarRotas" method="get" th:object="${cidades}">
-					<div class="form-group col-sm-4">
-					<input class="form-control form-control-sm" type="text" list="cidades" name="consulta">
+					<input class="form-control-sm" type="text" list="cidades"
+						name="consulta">
 					<datalist id="cidades">
-						<option th:each="consulta : ${cidades}" th:value="${consulta}" >
-						</datalist>
-						<button class="button button-contactForm boxed-btn mt-3">Pesquisar</button>
-					</form>
-					</div>
-				</div>
-				<div>
-					<table class="table table-dark ml-3 col-8" th:object= "${session.buscaEntregaLista}" >
-						<thead class="thead-dark">
-							<td th:if="${session.buscaEntregaLista} != null" >Rota (Origem - Destino)</td>
-							<td th:if="${session.buscaEntregaLista} != null">Dados Transportador</td>
-							<td th:if="${session.buscaEntregaLista} != null">Contato</td>
-							<td th:if="${session.buscaEntregaLista} != null">Encomendar"</td>
-						</thead>
-						<tr th:each="item : ${session.buscaEntregaLista}">
-							<td th:text="${item.consulta}" class="col 4"></td>
-							<td th:text="${item.nomeAssociado}" class="col 4"></td>
-							<td th:text="${item.contatoAssociado}" class="col 4"></td>
-							<td th:if="${session.usuario == null }" class="col 2"><a th:href="${(#mvc.url('GC#formRota').arg(0, item.idRota)).build()}">Solicitar</a></td>
-							<td th:if="${session.usuario != null}" class="col 2"><a th:if="${session.usuario.tipo == 2}" href="/pedidoEntrega?${item.idRota}">Solicitar</a></td>
-						</tr>
-					</table>
-				</div>
-			</main>
-			<footer>
-				<div class="footer-area footer-bg">
-					<div class="container">
-						<div class="footer-top footer-padding">
-							<!-- footer Heading -->
-							<div class="footer-heading">
-								<div class="row justify-content-between">
-									<div class="col-xl-6 col-lg-8 col-md-8">
-										<div class="wantToWork-caption wantToWork-caption2">
-											<h2>Contatos Sobre o Projeto:</h2>
-										</div>
-									</div>
-									<div class="col-xl col-lg">
-										<span class="contact-number f-right">Thiago: 83 988295219</span>
-										<span class="contact-number f-right">Leonardo: 83
-											999961382</span> <span class="contact-number f-right">Junior:
-											83 988581794</span> <span class="contact-number f-right">Igor:
-										83 998270907</span>
-									</div>
+						<option th:each="consulta : ${cidades}" th:value="${consulta}">
+					</datalist>
+					<button class="button button-contactForm boxed-btn mt-3 ml-2">Pesquisar</button>
+				</form>
+				<form action="/limparLista" method="post">
+					<button class="button button-contactForm boxed-btn mt-3 ml-3">Limpar
+						pesquisa</button>
+				</form>
+			</div>
+			<div class="d-flex justify-content-around"></div>
+		</div>
+		<div>
+			<table class="table table-dark ml-3 col-8"
+				th:object="${session.buscaEntregaLista}">
+				<thead class="thead-dark">
+					<td th:if="${session.buscaEntregaLista} != null">Rota (Origem
+						- Destino)</td>
+					<td th:if="${session.buscaEntregaLista} != null">Dados
+						Transportador</td>
+					<td th:if="${session.buscaEntregaLista} != null">Contato</td>
+					<td th:if="${session.buscaEntregaLista} != null">Encomendar"</td>
+				</thead>
+				<tr th:each="item : ${session.buscaEntregaLista}">
+					<td th:text="${item.consulta}" class="col 4"></td>
+					<td th:text="${item.nomeAssociado}" class="col 4"></td>
+					<td th:text="${item.contatoAssociado}" class="col 4"></td>
+					<td th:if="${session.usuario == null }" class="col 2"><a
+						th:href="${(#mvc.url('GC#formRota').arg(0, item.idRota)).build()}">Solicitar</a></td>
+					<td th:if="${session.usuario != null}" class="col 2"><a
+						th:if="${session.usuario.tipo == 2}"
+						href="/pedidoEntrega?${item.idRota}">Solicitar</a></td>
+				</tr>
+			</table>
+		</div>
+	</main>
+	<footer>
+		<div class="footer-area footer-bg">
+			<div class="container">
+				<div class="footer-top footer-padding">
+					<!-- footer Heading -->
+					<div class="footer-heading">
+						<div class="row justify-content-between">
+							<div class="col-xl-6 col-lg-8 col-md-8">
+								<div class="wantToWork-caption wantToWork-caption2">
+									<h2>Contatos Sobre o Projeto:</h2>
 								</div>
+							</div>
+							<div class="col-xl col-lg">
+								<span class="contact-number f-right">Thiago: 83 988295219</span>
+								<span class="contact-number f-right">Leonardo: 83
+									999961382</span> <span class="contact-number f-right">Junior:
+									83 988581794</span> <span class="contact-number f-right">Igor:
+									83 998270907</span>
 							</div>
 						</div>
 					</div>
 				</div>
-			</footer>
-			<!-- Scroll Up -->
-			<div id="back-top">
-				<a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
 			</div>
-			
-			<!-- JS here -->
-			
-			<!-- All JS Custom Plugins Link Here here -->
-			<script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
-			<!-- Jquery, Popper, Bootstrap -->
-			<script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
-			<script src="./assets/js/popper.min.js"></script>
-			<script src="./assets/js/bootstrap.min.js"></script>
-			<!-- Jquery Mobile Menu -->
-			<script src="./assets/js/jquery.slicknav.min.js"></script>
-			
-			<!-- Jquery Slick , Owl-Carousel Plugins -->
-			<script src="./assets/js/owl.carousel.min.js"></script>
-			<script src="./assets/js/slick.min.js"></script>
-			<!-- One Page, Animated-HeadLin -->
-			<script src="./assets/js/wow.min.js"></script>
-			<script src="./assets/js/animated.headline.js"></script>
-			
-			<!-- Nice-select, sticky -->
-			<script src="./assets/js/jquery.nice-select.min.js"></script>
-			<script src="./assets/js/jquery.sticky.js"></script>
-			<script src="./assets/js/jquery.magnific-popup.js"></script>
-			
-			<!-- contact js -->
-			<script src="./assets/js/contact.js"></script>
-			<script src="./assets/js/jquery.form.js"></script>
-			<script src="./assets/js/jquery.validate.min.js"></script>
-			<script src="./assets/js/mail-script.js"></script>
-			<script src="./assets/js/jquery.ajaxchimp.min.js"></script>
-			
-			<!-- Jquery Plugins, main Jquery -->
-			<script src="./assets/js/plugins.js"></script>
-			<script src="./assets/js/main.js"></script>
-			
-		</body>
-		
-	</html>	
+		</div>
+	</footer>
+	<!-- Scroll Up -->
+	<div id="back-top">
+		<a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+	</div>
+
+	<!-- JS here -->
+
+	<!-- All JS Custom Plugins Link Here here -->
+	<script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+	<!-- Jquery, Popper, Bootstrap -->
+	<script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+	<script src="./assets/js/popper.min.js"></script>
+	<script src="./assets/js/bootstrap.min.js"></script>
+	<!-- Jquery Mobile Menu -->
+	<script src="./assets/js/jquery.slicknav.min.js"></script>
+
+	<!-- Jquery Slick , Owl-Carousel Plugins -->
+	<script src="./assets/js/owl.carousel.min.js"></script>
+	<script src="./assets/js/slick.min.js"></script>
+	<!-- One Page, Animated-HeadLin -->
+	<script src="./assets/js/wow.min.js"></script>
+	<script src="./assets/js/animated.headline.js"></script>
+
+	<!-- Nice-select, sticky -->
+	<script src="./assets/js/jquery.nice-select.min.js"></script>
+	<script src="./assets/js/jquery.sticky.js"></script>
+	<script src="./assets/js/jquery.magnific-popup.js"></script>
+
+	<!-- contact js -->
+	<script src="./assets/js/contact.js"></script>
+	<script src="./assets/js/jquery.form.js"></script>
+	<script src="./assets/js/jquery.validate.min.js"></script>
+	<script src="./assets/js/mail-script.js"></script>
+	<script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+
+	<!-- Jquery Plugins, main Jquery -->
+	<script src="./assets/js/plugins.js"></script>
+	<script src="./assets/js/main.js"></script>
+
+</body>
+
+</html>
