@@ -69,7 +69,7 @@
 							<!-- Logo -->
 							<div class="col-xl-2 col-lg-2">
 								<div class="logo">
-									<a href="/sobre"
+									<a href="/"
 										target="_blank"><img src="assets/img/logo/logo.png" alt=""></a>
 								</div>
 							</div>
@@ -80,23 +80,8 @@
 									<div class="main-menu d-none d-lg-block">
 										<nav>
 											<ul id="navigation">
-												<li><a th:if="${session.usuario == null}" href="">Menu</a>
-													<a th:if="${session.usuario != null}"
-													th:text="${session.usuario.email}" href=""> </a>
-													<ul class="submenu">
-														<li th:if="${session.usuario == null}"><a
-															href="/cadastraUsuario">Cadastro</a></li>
-														<li th:if="${session.usuario == null}"><a
-															href="/login">Logar</a></li>
-														<li th:if="${session.usuario != null}"><a
-															th:if="${session.usuario.tipo == 2}"
-															href="/MenuAssociado">Gerenciar</a></li>
-														<li th:if="${session.usuario != null}"><a
-															th:if="${session.usuario.tipo == 1}" href="/MenuCliente">Gerenciar</a></li>
-														<li th:if="${session.usuario == null}"><a href="/sobre">Sobre</a></li>
-														<li th:if="${session.usuario != null}"><a
-															href="deslogar">Sair</a></li>
-													</ul></li>
+												<li><a th:if="${session.usuario == null}"
+													href="/index.html">Voltar</a></li>
 											</ul>
 										</nav>
 									</div>
@@ -120,7 +105,7 @@
 		<div class="slider-area ">
 			<div
 				class="single-slider hero-overly slider-height2 d-flex align-items-center"
-				data-background="assets/img/hero/frente.jpg">
+				data-background="assets/img/hero/h1_hero.jpg">
 				<div class="container">
 					<div class="row">
 						<div class="col-xl-12">
@@ -132,48 +117,15 @@
 				</div>
 			</div>
 		</div>
-		<div class="container" >
-			<h2 class="pt-4">Rotas de Encomendas
-			  <small class="text-muted">Pesquise aqui as rotas recomendadas por nossos assosciados</small>
-			</h2>
-			<div class="form-group d-flex justify-content-left">
-				<form action="/pesquisarRotas" method="get" th:object="${cidades}">
-					<input class="form-control-sm" type="text" list="cidades"
-						name="consulta">
-					<datalist id="cidades">
-						<option th:each="consulta : ${cidades}" th:value="${consulta}">
-					</datalist>
-					<button class="button button-contactForm boxed-btn mt-3 ml-2">Pesquisar</button>
-				</form>
-				<form action="/limparLista" method="post">
-					<button class="button button-contactForm boxed-btn mt-3 ml-3">Limpar
-						pesquisa</button>
-				</form>
-			</div>
-			<div class="d-flex justify-content-around"></div>
+		<div class="d-flex justify-content-around pt-5">
+			<h1>Sobre a DVAN</h1>
 		</div>
-		<div>
-			<table class="table table-dark ml-3 col-8"
-				th:object="${session.buscaEntregaLista}">
-				<thead class="thead-dark">
-					<td th:if="${session.buscaEntregaLista} != null">Rota (Origem
-						- Destino)</td>
-					<td th:if="${session.buscaEntregaLista} != null">Dados
-						Transportador</td>
-					<td th:if="${session.buscaEntregaLista} != null">Contato</td>
-					<td th:if="${session.buscaEntregaLista} != null">Encomendar"</td>
-				</thead>
-				<tr th:each="item : ${session.buscaEntregaLista}">
-					<td th:text="${item.consulta}" class="col 4"></td>
-					<td th:text="${item.nomeAssociado}" class="col 4"></td>
-					<td th:text="${item.contatoAssociado}" class="col 4"></td>
-					<td th:if="${session.usuario == null }" class="col 2"><a
-						th:href="${(#mvc.url('GC#formRota').arg(0, item.idRota)).build()}">Solicitar</a></td>
-					<td th:if="${session.usuario != null}" class="col 2"><a
-						th:if="${session.usuario.tipo == 2}"
-						href="/pedidoEntrega?${item.idRota}">Solicitar</a></td>
-				</tr>
-			</table>
+		<div class="d-flex justify-content-center">
+			<p class="col-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+			<p>
+		</div>
+		<div class="d-flex justify-content-around pb-5">
+			<img src="assets/img/logo/loder.jpg">
 		</div>
 	</main>
 	<footer>

@@ -89,13 +89,13 @@
         <!--? slider Area Start-->
         <div class="slider-area ">
             <div class="col-12">
-				<h2 class="contact-title">Cadastro de Rotas</h2>
+				<h2 class="contact-title">Pedido Encomenda</h2>
 				</div>
 				
 					<div class="col-lg-8">
                         <form class="form-contact contact_form" method="post" content-type="text/json" action="/pedidoEntrega">
 						
-						<h3 class="contact-title">Dados da Origem</h3>
+						<h3 class="contact-title">Dados Remetente</h3>
                             <div class="row">
                                 <div class="col-6">
                                     <div class="form-group">
@@ -129,7 +129,7 @@
                                 </div>
 								
 								<div class="col-sm-6">
-									<h3 class="contact-title">Dados do Destino</h3>
+									<h3 class="contact-title">Dados do Destinatário</h3>
 								</div>
 								<div class="col-sm-6">
 									
@@ -162,6 +162,8 @@
                                 <input type="hidden" name="idAssociado" th:value="${session.rota.idUsuario}">
                                 <input type="hidden" name="valor" th:value="${session.rota.valor}">
                                 <input type="hidden" name="idRota" th:value="${session.rota.id}">
+                                <input type="hidden" name="user" th:value="${session.usuario}">
+                                
 								<div class="col-sm-2">
 									<div class="form-group" >
 										<button type="submit" class="button button-contactForm boxed-btn">Cadastrar</button>

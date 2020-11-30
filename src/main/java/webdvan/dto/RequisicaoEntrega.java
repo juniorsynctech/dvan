@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import webdvan.models.Endereco;
+import webdvan.models.Usuario;
 
 public class RequisicaoEntrega {
 	public String nome;
@@ -20,6 +21,7 @@ public class RequisicaoEntrega {
 	public String logradouroDestino;
 	public Long idAssociado;
 	public long idRota;
+	public Usuario user;
 	
 	
 	public String getLogradouroDestino() {
@@ -107,12 +109,14 @@ public class RequisicaoEntrega {
 		enderecoOrigem.setCep(cepOrigem);
 		enderecoOrigem.setCidade(cidade);
 		enderecoOrigem.setUf(uf);
+		enderecoOrigem.setUsuario(user);
 		Endereco enderecoDestino = new Endereco();
 		enderecoDestino.setBairro(bairroDestino);
 		enderecoDestino.setCep(cepDestino);
 		enderecoDestino.setCidade(cidadeDestino);
 		enderecoDestino.setLogradouro(logradouroDestino);
 		enderecoDestino.setUf(ufDestino);
+		enderecoDestino.setUsuario(user);
 		List<Endereco> enderecos = new ArrayList<>();
 		enderecos.add(enderecoOrigem);
 		enderecos.add(enderecoDestino);

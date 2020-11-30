@@ -111,14 +111,15 @@ public class GeralController {
 		buscaEntregaLista = new ArrayList<>();
 
 		for (Rota r : rotas) {
-
-			Usuario us = ur.findById(rotas.get(0).getIdUsuario()).get();
-			buscaEntrega = new BuscaEntrega();
-			buscaEntrega.setContatoAssociado(us.getTelefone());
-			buscaEntrega.setConsulta(r.getConsulta());
-			buscaEntrega.setNomeAssociado(us.getEmail());
-			buscaEntrega.setIdRota(r.getId());
-			buscaEntregaLista.add(buscaEntrega);
+			if (r.getStatus() == 1) {
+				Usuario us = ur.findById(rotas.get(0).getIdUsuario()).get();
+				buscaEntrega = new BuscaEntrega();
+				buscaEntrega.setContatoAssociado(us.getTelefone());
+				buscaEntrega.setConsulta(r.getConsulta());
+				buscaEntrega.setNomeAssociado(us.getEmail());
+				buscaEntrega.setIdRota(r.getId());
+				buscaEntregaLista.add(buscaEntrega);
+			}
 		}
 
 		session.setAttribute("buscaEntregaLista", buscaEntregaLista);
@@ -131,6 +132,11 @@ public class GeralController {
 		session.removeAttribute("buscaEntregaLista");
 		ModelAndView mv = new ModelAndView("redirect:/");
 		return mv;
+	}
+
+	@GetMapping(value = "/sobre")
+	public String sobre() {
+		return "dvan/sobre.html";
 	}
 
 }

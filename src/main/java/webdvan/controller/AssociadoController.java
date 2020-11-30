@@ -75,14 +75,16 @@ public class AssociadoController {
 	}
 	
 	@RequestMapping(value = "/editarPerfil", method = RequestMethod.POST)
-	public ModelAndView editarPerfil(Usuario usuario, HttpSession session) {
+	public ModelAndView editarPerfil(Usuario usuario, HttpSession session, Endereco endereco) {
 		ModelAndView mv = new ModelAndView("associado/formMenuAssociado");
 		Usuario user = (Usuario) session.getAttribute("usuario");
+		usuario.setEnderecos(endereco);
 		usuario.setId(user.getId());
 		usuario.setTipo(user.getTipo());
 		usuario.setTelefone(user.getTelefone());
 		ur.save(usuario);
-		session.setAttribute("usuario", usuario);		
+		session.setAttribute("usuario", usuario);	
+		
 		return mv;
 	}
 	

@@ -2,11 +2,13 @@ package webdvan.models;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 
 @Entity
@@ -25,6 +27,8 @@ public class Usuario implements Serializable {
 	
 	@Column(unique=true)
 	protected String email;
+	@OneToOne (cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	private Endereco enderecos;
 
 	public Usuario(int tipo, String senha, String email) {
 		super();
@@ -35,6 +39,16 @@ public class Usuario implements Serializable {
 	
 	public Usuario() {
 		
+	}
+	
+	
+
+	public Endereco getEnderecos() {
+		return enderecos;
+	}
+
+	public void setEnderecos(Endereco enderecos) {
+		this.enderecos = enderecos;
 	}
 
 	public int getTipo() {
